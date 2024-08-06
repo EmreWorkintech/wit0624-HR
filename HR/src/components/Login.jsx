@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Form = styled.form`
@@ -37,27 +38,45 @@ const Button = styled.button`
 `;
 
 export default function Login() {
-  /*
-    form
-        label
-        input
+  //hook
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
 
-        label
-        input
+  //helper fn
+  function changeHandler(event) {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  }
 
-        button
-
-    */
+  function submitHandler(event) {
+    event.preventDefault();
+    console.log(formData);
+  }
+  //template
   return (
-    <Form>
+    <Form onSubmit={submitHandler}>
       <h2>Login</h2>
       <FormRow>
         <Label htmlFor="username">Username:</Label>
-        <Input id="username" type="email" placeholder="E-mail adresiniz" />
+        <Input
+          id="username"
+          type="email"
+          name="username"
+          placeholder="E-mail adresiniz"
+          onChange={changeHandler}
+        />
       </FormRow>
       <FormRow>
         <Label htmlFor="password">Password</Label>
-        <Input id="password" type="password" placeholder="Şifreniz" />
+        <Input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Şifreniz"
+          onChange={changeHandler}
+        />
       </FormRow>
       <FormRow>
         <Button type="submit">Log In</Button>
