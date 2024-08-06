@@ -56,10 +56,14 @@ export default function Login() {
   function submitHandler(event) {
     event.preventDefault();
     axios
-      .post("https://reqres.inn/api/users", formData)
+      .post("https://reqres.in/api/users", formData)
       .then((response) => {
         console.log(response.data);
-        history.push("/users");
+        setFormData({
+          username: "",
+          password: "",
+        });
+        //history.push("/users");
       })
       .catch((error) => console.log(error.message));
   }
@@ -75,6 +79,7 @@ export default function Login() {
           name="username"
           placeholder="E-mail adresiniz"
           onChange={changeHandler}
+          value={formData.username.toUpperCase()}
         />
       </FormRow>
       <FormRow>
@@ -85,6 +90,7 @@ export default function Login() {
           name="password"
           placeholder="Şifreniz"
           onChange={changeHandler}
+          value={formData.password}
         />
       </FormRow>
       <FormRow>
