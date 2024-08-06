@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Form = styled.form`
   width: 50%;
@@ -43,6 +45,7 @@ export default function Login() {
     username: "",
     password: "",
   });
+  const history = useHistory();
 
   //helper fn
   function changeHandler(event) {
@@ -52,7 +55,13 @@ export default function Login() {
 
   function submitHandler(event) {
     event.preventDefault();
-    console.log(formData);
+    axios
+      .post("https://reqres.inn/api/users", formData)
+      .then((response) => {
+        console.log(response.data);
+        history.push("/users");
+      })
+      .catch((error) => console.log(error.message));
   }
   //template
   return (
