@@ -72,7 +72,7 @@ export default function Register() {
           username: "",
           password: "",
         });
-        //history.push("/users");
+        history.push("/users");
       })
       .catch((error) => console.log(error.message));
   }

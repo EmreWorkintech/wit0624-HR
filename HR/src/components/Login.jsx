@@ -63,7 +63,7 @@ export default function Login() {
           username: "",
           password: "",
         });
-        //history.push("/users");
+        history.push("/users");
       })
       .catch((error) => console.log(error.message));
   }
@@ -77,6 +77,7 @@ export default function Login() {
           id="username"
           type="email"
           name="username"
+          data-cy="username-input"
           placeholder="E-mail adresiniz"
           onChange={changeHandler}
           value={formData.username.toUpperCase()}
@@ -88,13 +89,16 @@ export default function Login() {
           id="password"
           type="password"
           name="password"
+          data-cy="password-input"
           placeholder="Şifreniz"
           onChange={changeHandler}
           value={formData.password}
         />
       </FormRow>
       <FormRow>
-        <Button type="submit">Log In</Button>
+        <Button type="submit" data-cy="submit-login-form">
+          Log In
+        </Button>
       </FormRow>
     </Form>
   );
